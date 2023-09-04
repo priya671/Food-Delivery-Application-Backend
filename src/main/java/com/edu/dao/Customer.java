@@ -25,7 +25,8 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerid;
 
-	@Column(nullable = false)
+	@Pattern(regexp = "^[A-Za-z][A-Za-z0-9_]{2,19}$")
+	@Column(nullable = false, length = 20)
 	private String customername;
 
 	@Pattern(regexp = "^[5-9]\\d{0,9}$")
@@ -33,11 +34,12 @@ public class Customer {
 	private String customermobilenumber;
 
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "invalid Email")
-	@Column(unique = true)
+	@Column(unique = true, length = 50)
 	private String customeremail;
 
 	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$", message = "enter proper password")
-	private String password;
+	@Column(length = 20)
+	private String customerpassword;
 
 	
 	@OneToMany(mappedBy = "cust")
@@ -56,13 +58,13 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(String customername, String customermobilenumber, String customeremail, String password) {
+	public Customer(String customername, String customermobilenumber, String customeremail, String customerpassword) {
 
 		super();
 		this.customername = customername;
 		this.customermobilenumber = customermobilenumber;
 		this.customeremail = customeremail;
-		this.password = password;
+		this.customerpassword = customerpassword;
 
 	}
 
@@ -99,17 +101,17 @@ public class Customer {
 	}
 
 	public String getPassword() {
-		return password;
+		return customerpassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String customerpassword) {
+		this.customerpassword = customerpassword;
 	}
 
 	@Override
 	public String toString() {
 		return "Customer [customerid=" + customerid + ", customername=" + customername + ", customermobilenumber="
-				+ customermobilenumber + ", customeremail=" + customeremail + ", password=" + password + ", cob=" + cob
+				+ customermobilenumber + ", customeremail=" + customeremail + ", password=" + customerpassword + ", cob=" + cob
 				+ "]";
 	}
 

@@ -14,7 +14,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 	
 	//login through email
-	@Query(value = "select * from customer where customeremail=? and password=?",nativeQuery = true)
+	@Query(value = "select * from customer where customeremail=? and customerpassword=?",nativeQuery = true)
 	public Customer getCustomerByEmail(String email,String password);
 	
 	@Query(value = "select * from customer where customeremail=?",nativeQuery = true)

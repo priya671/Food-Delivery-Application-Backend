@@ -1,12 +1,8 @@
 package com.edu.service;
 
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
-
-import javax.persistence.criteria.Order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +17,15 @@ public class OrderServiceImpl implements OrderService {
 	private OrderREpository orderRepo;
 
 	@Override
-	public void saveOrder(Integer custid, Integer restid, Integer itemid, Integer cartid,Integer intitalQuantity) {
-		Orders existingorder =orderRepo.isOrderExist(custid, itemid, cartid, restid);			
+	public void saveOrder(Integer custid, Integer restid, Integer itemid,Integer intitalQuantity) {
+		Orders existingorder =orderRepo.isOrderExist(custid,restid, itemid);	
+		System.out.println(existingorder);
 		if(existingorder==null) {			
-			orderRepo.saveOrder("unpaid",custid, restid, itemid, cartid,intitalQuantity);
+			System.out.println("Under if");
+			orderRepo.saveOrder("unpaid",custid, restid, itemid,intitalQuantity,"true");
 		}
-		else {			
+		else {	
+			System.out.println("Under else");
 			existingorder.setQuantity(intitalQuantity);
 			orderRepo.save(existingorder);
 		}
@@ -78,14 +77,21 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public String deleteOrderById(Integer orderId) {
 		// TODO Auto-generated method stub
-		 orderRepo.deleteById(orderId);
+		 Orders order= orderRepo.findById(orderId).get();
+		 order.setFlag("false");
+		 orderRepo.save(order);
 		 return "orderDeleted";
 	}
 
 	@Override
 	public String deleteOrderhistory(Integer custId) {
 		// TODO Auto-generated method stub
-		 orderRepo.deleteOrderHistory(custId);
+		 List<Orders> order = orderRepo.getOrderByCustomerIdAndStatuPaid(custId);
+		 for(int i =0;i<order.size();i++) {
+			 Orders currentorder= order.get(i); 
+			 currentorder.setFlag("false");
+			 orderRepo.save(currentorder);
+		 }
 		 return "deleted";
 		 }
 

@@ -1,19 +1,8 @@
 package com.edu.dao;
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.*;
 
-import org.springframework.lang.NonNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 public class Orders {
@@ -21,11 +10,14 @@ public class Orders {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderid;
+	
+	@Column(length = 5)
+	private String Flag;
 
-	@Column
+	@Column(length = 6)
 	private String status;
 	
-	@Column
+	@Column(length = 30)
 	private String orderDate;
 	
 	@Column
@@ -47,25 +39,33 @@ public class Orders {
 	Customer cus;
 
 //	@JsonIgnore
-	@ManyToOne()
-	@JoinColumn(name = "foodCart_Id", referencedColumnName = "foodCart_Id")
-	FoodCart foodcart;
+	
 
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(String status, String orderDate, Integer quantity, Restaurant res, Item item, Customer cus,
-			FoodCart foodcart) {
-		super();
-		this.status = status;
-		this.orderDate = orderDate;
-		this.quantity = quantity;
-		this.res = res;
-		this.item = item;
-		this.cus = cus;
-		this.foodcart = foodcart;
+	
+
+	public Orders(Integer orderid, String flag, String status, String orderDate, Integer quantity, Restaurant res,
+		Item item, Customer cus) {
+	super();
+	this.orderid = orderid;
+	Flag = flag;
+	this.status = status;
+	this.orderDate = orderDate;
+	this.quantity = quantity;
+	this.res = res;
+	this.item = item;
+	this.cus = cus;
+}
+	
+	public String isFlag() {
+		return Flag;
+	}
+	public void setFlag(String flag) {
+		Flag = flag;
 	}
 
 	public Integer getOrderid() {
@@ -124,20 +124,13 @@ public class Orders {
 		this.cus = cus;
 	}
 
-	public FoodCart getFoodcart() {
-		return foodcart;
-	}
 
-	public void setFoodcart(FoodCart foodcart) {
-		this.foodcart = foodcart;
-	}
 
 	@Override
 	public String toString() {
-		return "Orders [orderid=" + orderid + ", status=" + status + ", orderDate=" + orderDate + ", quantity="
-				+ quantity + ", res=" + res + ", item=" + item + ", cus=" + cus + ", foodcart=" + foodcart + "]";
+		return "Orders [orderid=" + orderid + ", Flag=" + Flag + ", status=" + status + ", orderDate=" + orderDate
+				+ ", quantity=" + quantity + ", res=" + res + ", item=" + item + ", cus=" + cus + "]";
 	}
-
 	
 	
 }

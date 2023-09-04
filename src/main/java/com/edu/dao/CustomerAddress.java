@@ -34,22 +34,22 @@ public class CustomerAddress {
 	
 	@NotEmpty(message = "Please enter area")
 	@NotBlank(message = "Please enter area")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 40)
 	private String area;
 	
 	@NotEmpty(message = "Please enter city")
 	@NotBlank(message = "Please enter city")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	private String city;
 	
 	@NotEmpty(message = "Please enter state")
 	@NotBlank(message = "Please enter state")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	private String state;
 	
 	@NotEmpty(message = "Please enter country")
 	@NotBlank(message = "Please enter country")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	private String country;
 	
 	@Column(length = 6, nullable = false)

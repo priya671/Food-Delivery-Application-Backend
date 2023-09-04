@@ -10,7 +10,7 @@ import com.edu.dao.Orders;
 
 @Service
 public interface OrderService {
-	public void saveOrder(Integer custid, Integer restid, Integer itemid, Integer cartid,Integer intitalQuantity);
+	public void saveOrder(Integer custid, Integer restid, Integer itemid,Integer intitalQuantity);
 	
 	public List<Orders> getORderbyRestId(Integer id);
 

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Admin {
@@ -15,14 +16,16 @@ public class Admin {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer adminid;
 	
-	@Column(length = 40, nullable = false)
+	@Column(length = 20, nullable = false)
 	@NotBlank(message = "Username cannot be blank")
 	@NotEmpty(message = "Username cannot be empty")
+	@Pattern(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
 	private String username ;
 	
-	@Column(length = 40, nullable = false)
+	@Column(length = 20, nullable = false)
 	@NotBlank(message = "Password cannot be blank")
 	@NotEmpty(message = "Password cannot be empty")
+	@Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}")
 	private String password;
 	
 	public Admin() {

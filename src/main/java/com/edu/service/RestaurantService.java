@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.edu.dao.FoodCart;
 import com.edu.dao.Item;
 import com.edu.dao.Restaurant;
 import com.edu.error.GlobalException;
@@ -33,22 +32,5 @@ public interface RestaurantService{
 
 	public List<Item> viewOrdersByRestauranat(Integer id);
 
-//	public Restaurant getRestaurantByEmail1(String email);
-
-	
-
-//	public Restaurant getRestaurantById(Integer restid);
-//	
-//	public Restaurant getRestaurantByEmail(String email, String password);
-//
-//	public Restaurant getRestaurantByEmail(String email, String password);
-
-
-//	public Restaurant findRestaurantByName(String restname) throws GlobalException;
-//
-//	public Restaurant updateRestaurantManagerName(@Valid Integer id, @Valid String managerName) throws GlobalException;
-
-	
-//	public List<Restaurant> saveItemByRestIdi(@Valid Item item, Integer restid) throws GlobalException;
 
 }

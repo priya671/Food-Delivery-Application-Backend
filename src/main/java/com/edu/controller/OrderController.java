@@ -2,19 +2,15 @@ package com.edu.controller;
 
 import java.util.List;
 
-import javax.persistence.criteria.Order;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.dao.Orders;
 import com.edu.service.OrderService;
-import com.edu.service.OrderServiceImpl;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -23,10 +19,10 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-	@GetMapping("/saveOrder/customerid/{custid}/restid/{restid}/itemid/{itemid}/cartid/{cartid}/quantity/{intitalQuantity}")
+	@GetMapping("/saveOrder/customerid/{custid}/restid/{restid}/itemid/{itemid}/quantity/{intitalQuantity}")
 	public String saveOrder(@PathVariable Integer custid, @PathVariable Integer restid, @PathVariable Integer itemid,
-			@PathVariable Integer cartid,@PathVariable("intitalQuantity")Integer intitalQuantity) {
-		 orderService.saveOrder(custid, restid, itemid, cartid,intitalQuantity);
+			@PathVariable("intitalQuantity")Integer intitalQuantity) {
+		 orderService.saveOrder(custid, restid, itemid,intitalQuantity);
 		 return "hey";		
 	}
 	

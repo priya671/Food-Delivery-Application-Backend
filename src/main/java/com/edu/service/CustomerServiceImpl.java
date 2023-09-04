@@ -12,14 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.edu.dao.Customer;
 import com.edu.dao.CustomerAddress;
-import com.edu.dao.Item;
-import com.edu.dao.Restaurant;
-import com.edu.error.GlobalException;
 import com.edu.repository.CustomerAddressRepository;
 import com.edu.repository.CustomerRepository;
-import com.edu.repository.FoodCartRepository;
 import com.edu.repository.OrderREpository;
-import com.edu.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -33,9 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private OrderREpository orderRepo;
 	
-	@Autowired
-	private FoodCartRepository cartRepo;
-
+	
 	@Override
 	public Customer saveCustomer(Customer customer) {
 
@@ -53,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 		
 		orderRepo.deleteOrderByCustId(customerid);
-		cartRepo.deletecartByCustId(customerid);
+		
 		cusAddRepo.deleteCustomerAddbyCustId(customerid);
 		customerRepository.deleteById(customerid);
 		return customerRepository.findAll();

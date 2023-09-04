@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -28,53 +29,61 @@ public class Restaurant {
 	private Integer restid;
 	
 	@NotBlank(message="Please enter name")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
+	@Pattern(regexp = "[a-zA-Z][a-zA-Z ]+$")
 	private String restname;
 	
 	@NotBlank(message = "Manager name should not be blank")
 	@NotEmpty(message = "Manager name should not be empty")
 	@Column(length = 20, nullable = false)
+	@Pattern(regexp = "[a-zA-Z][a-zA-Z ]+$")
 	private String managerName;
 	
 	@NotBlank(message = "contact number should not be blank")
 	@NotEmpty(message = "contact number should not be empty")
-	@Column(nullable = false, unique= true)
+	@Column(nullable = false, unique= true, length = 10)
+	@Pattern(regexp = "^[6-9][0-9]{9}$")
 	private String contactNumber;
 	
+	@NotEmpty(message = "Please enter pic")
+	@NotBlank(message = "Please enter pic")
 	@Column(nullable = true)
 	private String pic;
 	
 	@NotEmpty(message = "Please enter area")
 	@NotBlank(message = "Please enter area")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
+	@Pattern(regexp = "[a-zA-Z][a-zA-Z ]+$")
 	private String area;
 	
 	@NotEmpty(message = "Please enter city")
 	@NotBlank(message = "Please enter city")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	private String city;
 	
 	@NotEmpty(message = "Please enter state")
 	@NotBlank(message = "Please enter state")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	private String state;
 	
 	@NotEmpty(message = "Please enter country")
 	@NotBlank(message = "Please enter country")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	private String country;
 	
 	@NotEmpty(message = "Please enter pincode")
 	@NotBlank(message = "Please enter pincode")
 	@Length(min = 6, max = 6, message = "6 digit only")
 	@Column(length = 6, nullable = false)
+	@Pattern(regexp = "^[1-9][0-9]{5}$")
 	private String pincode;
 
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}" , message = "invalid Email")
-	@Column(unique = true)
+	@Column(unique = true, length = 30)
 	private String email;
 		
-//		@Column(unique = true)
+	@Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}", message = "Invalid Password")
+	@Column(nullable = false, length = 20)
 	private String password;
 	
 	@JsonIgnore
