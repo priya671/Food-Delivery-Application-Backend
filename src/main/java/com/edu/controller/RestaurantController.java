@@ -100,4 +100,9 @@ public class RestaurantController {
 		return restaurantService.viewOrdersByRestauranat(id);
 	}
 	
+	@GetMapping("/getRestaurantByEmail2/{email}")
+	public Restaurant getRestaurantByEmail2(@PathVariable("email") String Email) {
+		return restaurantService.getRestaurantByEmail2(Email);
+	}
+	
 }

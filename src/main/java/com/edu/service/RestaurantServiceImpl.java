@@ -181,4 +181,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 			
 
 	}
+
+	@Override
+	public Restaurant getRestaurantByEmail2(String email) {
+		// TODO Auto-generated method stub
+		return restaurantRepository.getRestaurantByEmail2(email);
+	}
 }

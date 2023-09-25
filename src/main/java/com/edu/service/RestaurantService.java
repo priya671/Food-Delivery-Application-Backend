@@ -32,5 +32,7 @@ public interface RestaurantService{
 
 	public List<Item> viewOrdersByRestauranat(Integer id);
 
+	public Restaurant getRestaurantByEmail2(String email);
+
 
 }

@@ -30,6 +30,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	@Query(value = "select restid from restaurant where email=?",nativeQuery = true)
 	public Integer getRestaurantByEmail(String email);
 	
+	@Query(value = "select * from restaurant where email=?",nativeQuery = true)
+	public Restaurant getRestaurantByEmail2(String email);
+	
 
 
 }
